@@ -37,6 +37,8 @@
                  ngModel
                  required
                  placeholder="Precio del producto">
+                 <span *ngIf="precioValido"
+                 class="form-text text-danger">El precio debe ser igual o mayor a 0</span>
         </div>
       </div>
 
@@ -50,6 +52,9 @@
                  class="form-control"
                  name="cantidadProducto"
                  ngModel
+                 required
+                 customMin
+                 [minimo]="0"
                  placeholder="Cantidad del producto">
         </div>
       </div>
@@ -57,7 +62,9 @@
       <!-- Boton del formulario -->
       <div class="row">
         <div class="col">
-          <button type="submit" class=" btn btn-primary float-end">Guardar</button>
+          <button type="submit"
+                  [disabled]="miFormulario.invalid"
+                  class=" btn btn-primary float-end">Guardar</button>
         </div>
       </div>
 
@@ -79,5 +86,8 @@
 
       <span>Value</span>
       <pre>{{ miFormulario.value | json }}</pre>
+
+      <span>Custom Directive</span>
+      <pre>{{ miFormulario.controls.cantidadProducto?.errors | json }}</pre>
   </div>
 </div>

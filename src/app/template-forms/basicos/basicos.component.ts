@@ -14,13 +14,22 @@ export class BasicosComponent implements OnInit {
     return this.miFormulario?.controls.nombreProducto?.invalid && this.miFormulario?.controls.nombreProducto?.touched
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  get precioValido(){
+    return this.miFormulario?.controls.precioProducto?.touched && this.miFormulario.controls.precioProducto?.value < 0
   }
 
+  constructor() { }
+
+  ngOnInit(): void { }
+
+
+
   guardar() {
-    console.log(this.miFormulario);
+    console.log(this.miFormulario.value);
+    this.miFormulario.reset({
+      precioProducto: 0,
+      cantidadProducto: 0
+    })
   }
 
 }
