@@ -1,1 +1,82 @@
-<p>dinamicos works!</p>
+<h5>Template: <small>Dinámicos</small></h5>
+<hr>
+
+<form (ngSubmit)="guardar()" #formularioDinamico="ngForm" autocomplete="off">
+
+  <!-- Nombre -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Nombre</label>
+    <div class="col-sm-9">
+      <input type="text"
+             class="form-control"
+             [ngModel]="persona.nombre"
+             name="nombrePersona"
+             required
+             placeholder="Nombre de la persona">
+      <span class="form-text text-danger"
+            *ngIf="nombreInvalido">
+            Debe completar esta campo
+      </span>
+      <span class="form-text text-danger"
+            *ngIf="formularioDinamico.controls.nombrePersona?.errors && this.formularioDinamico.controls.nombrePersona?.touched">
+            Campo obligatorio
+      </span>
+    </div>
+  </div>
+
+  <!-- Agregar favorito -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input type="text"
+               (keyup.enter)="addJuego()"
+               class="form-control"
+               [(ngModel)]="nuevoJuego"
+               name="nuevoJuego"
+               placeholder="Agregar juego favorito">
+               <button type="button"
+                        (click)="addJuego()"
+                       class="btn btn-success">
+                 Agregar
+               </button>
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Listado de favoritos -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Favoritos:</label>
+    <div class="col-sm-9">
+      <span *ngIf="persona.juegosFavoritos.length <= 0">No ha ingresado un favorito</span>
+      <div class="input-group" *ngFor="let item of persona.juegosFavoritos; let i=index">
+      <input type="text"
+             required
+             [(ngModel)]="item.nombre"
+             name="favorito_{{ i }}"
+             class="form-control form-control-sm mb-1">
+             <button type="button"
+                     class="btn btn-danger mb-1"
+                     (click)="eliminar(i)">
+              Borrar
+            </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button  type="button"
+               [disabled]="formularioDinamico.invalid"
+               class="btn btn-primary float-end"
+               (click)="guardar()">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
+<span>Form data</span>
+<pre>{{ persona | json }}</pre>
