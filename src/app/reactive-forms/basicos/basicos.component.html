@@ -1,1 +1,81 @@
-<p>basicos works!</p>
+<h5>Reactive: <small>Básicos</small></h5>
+<hr>
+
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off">
+      <!-- Campo de producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">
+          <strong>Producto:</strong>
+        </label>
+        <div class="col-sm-9">
+          <input type="text"
+                class="form-control"
+                placeholder="Nombre del producto">
+          <span class="form-text text-danger">
+            Debe de ser de 3 letras
+          </span>
+        </div>
+      </div>
+
+      <!-- Campo de precio producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">
+          <strong>Precio:</strong>
+        </label>
+        <div class="col-sm-9">
+          <input type="number"
+                 class="form-control"
+                 placeholder="Precio del producto">
+          <span class="form-text text-danger">
+            El precio debe ser igual o mayor a 0
+          </span>
+        </div>
+      </div>
+
+      <!-- Campo de cantidad -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">
+          <strong>Cantidad:</strong>
+        </label>
+        <div class="col-sm-9">
+          <input type="number"
+                 class="form-control"
+                 name="cantidadProducto"
+                 placeholder="Cantidad del producto">
+        </div>
+      </div>
+
+      <!-- Boton del formulario -->
+      <div class="row">
+        <div class="col">
+          <button type="submit"
+                  class=" btn btn-primary float-end">Guardar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<!-- <div class="row">
+  <div class="col">
+      <span>Valid</span>
+      <pre>{{ miFormulario.valid }}</pre>
+
+      <span>Pristine</span>
+      <pre>{{ miFormulario.pristine }}</pre>
+
+      <span>Touched</span>
+      <pre>{{ miFormulario.touched }}</pre>
+
+      <span>Value</span>
+      <pre>{{ miFormulario.value | json }}</pre>
+
+      <span>Custom Directive</span>
+      <pre>{{ miFormulario.controls.cantidadProducto?.errors | json }}</pre>
+  </div>
+</div> -->

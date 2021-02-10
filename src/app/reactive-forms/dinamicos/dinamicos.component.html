@@ -1,1 +1,63 @@
-<p>dinamicos works!</p>
+<h5>Reactive: <small>Dinámicos</small></h5>
+<hr>
+
+<form autocomplete="off">
+
+  <!-- Nombre -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Nombre</label>
+    <div class="col-sm-9">
+      <input type="text"
+             class="form-control"
+             name="nombrePersona"
+             placeholder="Nombre de la persona">
+      <span class="form-text text-danger">
+            Debe completar esta campo
+      </span>
+    </div>
+  </div>
+
+  <!-- Agregar favorito -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input type="text"
+               class="form-control"
+               name="nuevoJuego"
+               placeholder="Agregar juego favorito">
+               <button type="button"
+                       class="btn btn-success">
+                 Agregar
+               </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Listado de favoritos -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Favoritos:</label>
+    <div class="col-sm-9">
+      <!-- <span *ngIf="persona.juegosFavoritos.length <= 0">No ha ingresado un favorito</span>
+      <div class="input-group" *ngFor="let item of persona.juegosFavoritos; let i=index">
+      <input type="text"
+             class="form-control form-control-sm mb-1">
+             <button type="button"
+                     class="btn btn-danger mb-1"
+                     (click)="eliminar(i)">
+              Borrar
+            </button>
+      </div> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button  type="button"
+               class="btn btn-primary float-end">
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
