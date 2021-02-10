@@ -3,7 +3,7 @@
   <hr>
 
   <ul class="list-group">
-    <li *ngFor="let item of templateMenu"
+    <li *ngFor="let item of templateMenu" style="cursor: pointer;"
       class="list-group-item" [routerLink]="item.ruta" routerLinkActive="active" >
       {{ item.texto }}
     </li>
