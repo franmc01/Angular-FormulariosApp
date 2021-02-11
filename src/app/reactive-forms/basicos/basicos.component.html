@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardarInfo()">
       <!-- Campo de producto -->
       <div class="mb-3 row">
         <label class="col-sm-3 col-form-label">
@@ -13,9 +13,12 @@
         <div class="col-sm-9">
           <input type="text"
                 class="form-control"
+                formControlName="nombre"
                 placeholder="Nombre del producto">
-          <span class="form-text text-danger">
-            Debe de ser de 3 letras
+
+          <span *ngIf="campoNoEsValido('nombre')"
+                class="form-text text-danger">
+            Debe tener al menos 3 letras
           </span>
         </div>
       </div>
@@ -28,8 +31,11 @@
         <div class="col-sm-9">
           <input type="number"
                  class="form-control"
+                 formControlName="precio"
                  placeholder="Precio del producto">
-          <span class="form-text text-danger">
+
+            <span *ngIf="campoNoEsValido('precio')"
+                 class="form-text text-danger">
             El precio debe ser igual o mayor a 0
           </span>
         </div>
@@ -43,8 +49,14 @@
         <div class="col-sm-9">
           <input type="number"
                  class="form-control"
+                 formControlName="cantidad"
                  name="cantidadProducto"
                  placeholder="Cantidad del producto">
+
+            <span *ngIf="campoNoEsValido('precio')"
+                 class="form-text text-danger">
+            La cantidad debe ser igual o mayor a 0
+          </span>
         </div>
       </div>
 
@@ -61,7 +73,7 @@
 </div>
 
 
-<!-- <div class="row">
+<div class="row">
   <div class="col">
       <span>Valid</span>
       <pre>{{ miFormulario.valid }}</pre>
@@ -75,7 +87,14 @@
       <span>Value</span>
       <pre>{{ miFormulario.value | json }}</pre>
 
-      <span>Custom Directive</span>
-      <pre>{{ miFormulario.controls.cantidadProducto?.errors | json }}</pre>
+      <span>Errores de nombre</span>
+      <pre>{{ miFormulario.controls.nombre.errors | json }}</pre>
+
+      <span>Errores de precio</span>
+      <pre>{{ miFormulario.controls.precio.errors | json }}</pre>
+
+      <span>Errores de cantidad</span>
+      <pre>{{ miFormulario.controls.cantidad.errors | json }}</pre>
+
   </div>
-</div> -->
+</div>

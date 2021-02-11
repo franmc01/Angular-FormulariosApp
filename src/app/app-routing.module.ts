@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'reactive-forms',
-    loadChildren: () => import('./reactive-forms/reactive-forms.module').then(m => m.ReactiveFormsModule)
+    loadChildren: () => import('./reactive-forms/reactive.module').then(m => m.ReactiveModule)
   },
   {
     path: 'template-forms',
