@@ -1,7 +1,7 @@
 <h5>Reactive: <small>Dinámicos</small></h5>
 <hr>
 
-<form autocomplete="off">
+<form autocomplete="off" [formGroup]="miFormularioDinamico">
 
   <!-- Nombre -->
   <div class="mb-3 row">
@@ -9,10 +9,10 @@
     <div class="col-sm-9">
       <input type="text"
              class="form-control"
-             name="nombrePersona"
+             formControlName="nombrePersona"
              placeholder="Nombre de la persona">
-      <span class="form-text text-danger">
-            Debe completar esta campo
+      <span *ngIf="campoNoValido" class="form-text text-danger">
+            Debe completar con al menos 3 letras
       </span>
     </div>
   </div>
@@ -24,9 +24,11 @@
       <div class="input-group">
         <input type="text"
                class="form-control"
-               name="nuevoJuego"
-               placeholder="Agregar juego favorito">
+               [formControl]="nuevoFavorito"
+               placeholder="Agregar juego favorito"
+               (keyup.enter)="agregarFavorito()">
                <button type="button"
+                       (click)="agregarFavorito()"
                        class="btn btn-success">
                  Agregar
                </button>
@@ -37,27 +39,55 @@
   <!-- Listado de favoritos -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Favoritos:</label>
-    <div class="col-sm-9">
-      <!-- <span *ngIf="persona.juegosFavoritos.length <= 0">No ha ingresado un favorito</span>
-      <div class="input-group" *ngFor="let item of persona.juegosFavoritos; let i=index">
+    <div class="col-sm-9" formArrayName="favoritos">
+      <span *ngIf="favoritosArr.length <= 0">No ha ingresado un favorito, debe ingresar al menos 1</span>
+      <div class="input-group" *ngFor="let item of favoritosArr.controls; let i=index">
+        <!-- [formControlName]="i" -->
       <input type="text"
+             formControlName="{{ i }}"
              class="form-control form-control-sm mb-1">
              <button type="button"
-                     class="btn btn-danger mb-1"
-                     (click)="eliminar(i)">
+             (click)="borrarFavorito(i)"
+               class="btn btn-danger mb-1">
               Borrar
             </button>
-      </div> -->
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-sm-12">
       <button  type="button"
+               (click)="guardar()"
                class="btn btn-primary float-end">
         Guardar
       </button>
     </div>
   </div>
 </form>
+
+
+<span>Valid</span>
+<pre>{{ miFormularioDinamico.valid }}</pre>
+
+<span>Campo agregar</span>
+<pre>{{ nuevoFavorito.valid }}</pre>
+
+<span>Valor del campo agregar</span>
+<pre>{{ nuevoFavorito.value | json }}</pre>
+
+<span>Value</span>
+<pre>{{ miFormularioDinamico.value | json }}</pre>
+
+<span>Pristine</span>
+<pre>{{ miFormularioDinamico.pristine }}</pre>
+
+<span>Touched</span>
+<pre>{{ miFormularioDinamico.touched }}</pre>
+
+<span>Errores de favoritos de nombre</span>
+<pre>{{ miFormularioDinamico.controls.favoritos.errors | json }}</pre>
+
+<span>Errores de nombre persona</span>
+<pre>{{ miFormularioDinamico.controls.nombrePersona.errors | json }}</pre>
 
