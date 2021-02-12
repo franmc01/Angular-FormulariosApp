@@ -1,6 +1,6 @@
 <h5>Reactive: <small>Switches</small></h5>
 <hr>
-<form>
+<form [formGroup]="miformularioSwitch" (ngSubmit)="guardar()">
 
   <!-- Radio  -->
   <div class="row mb-3">
@@ -10,7 +10,7 @@
         <input class="form-check-input"
                type="radio"
                value="M"
-               name="radioGenero"
+               formControlName="genero"
                id="radioMasculino">
 
         <label class="form-check-label"
@@ -23,7 +23,7 @@
         <input class="form-check-input"
                type="radio"
                value="F"
-               name="radioGenero"
+               formControlName="genero"
                id="radioFemenino">
 
         <label class="form-check-label"
@@ -42,6 +42,7 @@
       <div class="form-check form-switch mt-2">
         <input class="form-check-input"
                type="checkbox"
+               formControlName="notificaciones"
                id="flexSwitchCheckChecked">
 
         <label class="form-check-label"
@@ -58,7 +59,7 @@
       <div class="form-check">
         <input class="form-check-input"
                type="checkbox"
-               name="termCond"
+               formControlName="condiciones"
                id="defaultCheck1">
 
         <label class="form-check-label" for="defaultCheck1">
@@ -70,7 +71,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <button  type="button"
+      <button  type="submit"
                class="btn btn-primary float-end">
         Enviar
       </button>
@@ -81,15 +82,15 @@
 </form>
 
 
-<!-- <h5>Valor del formulario</h5>
-<pre>{{ switchForm.value | json }}</pre>
+<h5>Valor del formulario</h5>
+<pre>{{ miformularioSwitch.value | json }}</pre>
 
 <h5>Persona</h5>
 <pre>{{ persona | json }}</pre>
 
 <h5>Valido formulario</h5>
-<pre>{{ switchForm.valid }}</pre>
+<pre>{{ miformularioSwitch.valid }}</pre>
 
-<h5>Terminos y condiciones</h5>
-<pre>{{ switchForm.controls?.termCond?.errors | json }}</pre> -->
+<!-- <h5>Terminos y condiciones</h5>
+<pre>{{ miformularioSwitch.controls?.termCond?.errors | json }}</pre> -->
 
