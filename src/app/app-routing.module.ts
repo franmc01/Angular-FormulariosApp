@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./template-forms/template-forms.module').then(m => m.TemplateFormsModule)
   },
   {
+    path: 'auth',
+    loadChildren: ()=>import('./auth/auth.module').then(m=>m.AuthModule)
+  },
+  {
     path: '**',
     redirectTo: 'template-forms'
   }
