@@ -3,30 +3,31 @@
 
 <div class="row">
   <div class="col">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="formularioRegistro" (ngSubmit)="submitFormulario()">
 
       <!-- Nombres -->
       <div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label">Nombre:</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="Nombre del usuario">
+          <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre del usuario">
+
+          <span class="form-text text-danger" *ngIf="campoNoValido('nombre')">
+            Debe ser en formato de nombre y apellido
+          </span>
         </div>
 
-        <span class="form-text text-danger">
-          Debe ser en formato de nombre y apellido
-        </span>
       </div>
 
       <!-- Email -->
       <div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label">Email:</label>
         <div class="col-sm-9">
-          <input type="email" class="form-control" placeholder="Email del usuario">
-        </div>
+          <input type="email" formControlName="correo" class="form-control" placeholder="Email del usuario">
 
-        <!-- <span class="form-text text-danger">
-          Debe ser en formato de nombre y apellido
-        </span> -->
+          <span class="form-text text-danger" *ngIf="campoNoValido('correo')">
+            Ingrese un correo válido
+          </span>
+        </div>
       </div>
 
       <!-- Username -->
@@ -67,9 +68,19 @@
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end">Registrarme</button>
+          <button type="submit" class="btn btn-primary float-end">Registrarme</button>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+
+
+<span>Valid</span>
+<pre>{{ formularioRegistro.valid }}</pre>
+
+
+<span>Nombre</span>
+<br>
+<span>{{ formularioRegistro.controls.nombre.errors | json }}</span>
