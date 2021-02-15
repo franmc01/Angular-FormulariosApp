@@ -34,12 +34,12 @@
       <div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label">Username:</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" placeholder="Username del usuario">
+          <input type="text" class="form-control" formControlName="username" placeholder="Username del usuario">
         </div>
 
-        <!-- <span class="form-text text-danger">
-                Debe ser en formato de nombre y apellido
-              </span> -->
+        <span class="form-text text-danger" *ngIf="noPuedeSisco()">
+                El username 'Sisco' no se puede usar
+               </span>
       </div>
 
       <!-- Password -->
@@ -81,6 +81,14 @@
 <pre>{{ formularioRegistro.valid }}</pre>
 
 
-<span>Nombre</span>
-<br>
+<h5>Nombre</h5>
 <span>{{ formularioRegistro.controls.nombre.errors | json }}</span>
+<br>
+
+<h5>Email</h5>
+<span>{{ formularioRegistro.controls.correo.errors | json }}</span>
+<br>
+
+<h5>Username</h5>
+<span>{{ formularioRegistro.controls.username.errors | json }}</span>
+<br>
