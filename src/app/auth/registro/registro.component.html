@@ -35,11 +35,10 @@
         <label for="" class="col-sm-3 col-form-label">Username:</label>
         <div class="col-sm-9">
           <input type="text" class="form-control" formControlName="username" placeholder="Username del usuario">
+          <span class="form-text text-danger" *ngIf="campoNoValido('username')">
+            El username 'Sisco' no se puede usar
+           </span>
         </div>
-
-        <span class="form-text text-danger" *ngIf="noPuedeSisco()">
-                El username 'Sisco' no se puede usar
-               </span>
       </div>
 
       <!-- Password -->

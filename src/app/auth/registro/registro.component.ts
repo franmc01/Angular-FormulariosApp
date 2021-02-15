@@ -1,5 +1,7 @@
+import { ValidatorService } from './../../shared/validators/validator.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { nombreApellidoPattern, emailPattern } from '../../shared/validators/validaciones';
 
 @Component({
   selector: 'app-registro',
@@ -8,34 +10,14 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class RegistroComponent implements OnInit {
 
-  // TODO: Temporal
-  nombreApellidoPattern: string = '([a-zA-z]+) ([a-zA-z]+)';
-  emailPattern: string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-
-  //Este metodo ee un ejemplo de una validacion personalizada
-  noPuedeSisco(control:FormControl){
-    //Almaceno el valor emitido por el campo
-    const valor:string = control?.value.trim().toLowerCase();
-    //hago la validacion, por ejemplo
-    if(valor === 'sisco'){
-      console.log(valor);
-      //Error
-      return {
-        noSisco: true
-      }
-    }else{
-      //En las validaciones si se hace return de un significa todo ok
-      return null;
-    }
-  }
 
   formularioRegistro: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.pattern(this.nombreApellidoPattern)]],
-    correo: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-    username: [ '', [Validators.required, this.noPuedeSisco]]
+    nombre: ['Francisco Marin', [Validators.required, Validators.pattern(nombreApellidoPattern)]],
+    correo: ['f@f.com', [Validators.required, Validators.pattern(emailPattern)]],
+    username: [ 'NoSisco', [Validators.required, this.vs.noPuedeSisco]]
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private vs:ValidatorService) { }
 
   ngOnInit(): void {
   }
