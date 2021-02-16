@@ -37,7 +37,7 @@
           <input type="text" class="form-control" formControlName="username" placeholder="Username del usuario">
           <span class="form-text text-danger" *ngIf="campoNoValido('username')">
             El username 'Sisco' no se puede usar
-           </span>
+          </span>
         </div>
       </div>
 
@@ -45,24 +45,23 @@
       <div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label">Password:</label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" placeholder="Password de su cuenta">
+          <input type="password" class="form-control" formControlName="password" placeholder="Password de su cuenta">
+          <span class="form-text text-danger" *ngIf="campoNoValido('password')">
+            La contraseña debe tener al menos 6 caracteres
+          </span>
         </div>
-
-        <!-- <span class="form-text text-danger">
-                Debe ser en formato de nombre y apellido
-              </span> -->
       </div>
 
       <!-- Confirmar Password -->
       <div class="row mb-3">
         <label for="" class="col-sm-3 col-form-label">Confirmar:</label>
         <div class="col-sm-9">
-          <input type="password" class="form-control" placeholder="Confirmar su password">
+          <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirmar su password">
+          <span class="form-text text-danger" *ngIf="campoNoValido('confirmPassword')">
+            Las passwords no coinciden
+          </span>
         </div>
 
-        <!-- <span class="form-text text-danger">
-                      Debe ser en formato de nombre y apellido
-                    </span> -->
       </div>
 
       <div class="row">
@@ -79,6 +78,9 @@
 <span>Valid</span>
 <pre>{{ formularioRegistro.valid }}</pre>
 
+<span>Form errors</span>
+<pre>{{ formularioRegistro.errors | json }}</pre>
+
 
 <h5>Nombre</h5>
 <span>{{ formularioRegistro.controls.nombre.errors | json }}</span>
@@ -90,4 +92,12 @@
 
 <h5>Username</h5>
 <span>{{ formularioRegistro.controls.username.errors | json }}</span>
+<br>
+
+<h5>Password</h5>
+<span>{{ formularioRegistro.controls.password.errors | json }}</span>
+<br>
+
+<h5>Confirmar</h5>
+<span>{{ formularioRegistro.controls.confirmPassword.errors | json }}</span>
 <br>
